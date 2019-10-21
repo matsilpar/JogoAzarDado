@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <conio.h>
+#include<time.h>
+
+int main()
+{
+    setlocale(LC_ALL, "Portuguese");
+    srand (time(NULL));
+    int d1, d2, x;
+    float a, a1, a2, aux;
+    printf("Aposta minima: 1 Real, aposta maxima 100 reais");
+    printf("\nVocê pode pegar qualquer número de um dado de 6 faces");
+    printf("\nO programa rodara dois dados simultaneamente");
+    printf("\nSe o seu número não aparecer, você perde oque foi apostado");
+    printf("\nSe seu número aparecer 1 vez, você ganha duas vezes o valor apostado ");
+    printf("\nSe seu número aparecer 2 vezes, você ganha cinco vezes o valor apostado");
+    printf("\n\nDigite o valor da sua aposta: ");
+    scanf("%f", &a);
+    fflush(stdin);
+    printf("\n\nSua escolha: ");
+    scanf("%d", &x);
+    aux=a*2;
+    a1=a+aux;
+    aux=a*5;
+    a2=a+aux;
+    d1=rand()%6+1;
+    d2=rand()%6+1;
+    printf("\nPrimeiro dado: %d", d1);
+    printf("\nSegundo dado: %d\n", d2);
+    if (x<1 || x>6)
+        printf("Escolha invalida!");
+    else if (d1==x && d2!=x || d2==x && d1!=x)
+        printf("Você ganhou:%2.f Reais!", a1);
+    else if (d1!=x && d2!=x)
+        printf("Você perdeu!");
+    else if (d1==x && d2==x)
+        printf("Você ganhou:%2.f Reais!", a2);
+    getch();
+    return 0;
+}
